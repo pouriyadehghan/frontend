@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>صفحه شخصی من</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: blue;
+        }
+
+        .project {
+            background-color: lightgray;
+            padding: 10px;
+            margin-bottom: 10px;
+            transition: all 0.5s ease;
+        }
+        .project-title {
+            font-weight: bold;
+        }
+        .project-description {
+            display: none;
+        }
+        .button-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+    </style>
+
+
+    <!--.عنوان اصلی صفحه "به صفحه شخصی من خوش آمدید" است و پاراگراف زیر آن درباره نوع فعالیت شخص (توسعه‌دهنده وب) و هدف صفحه (معرفی پروژه‌ها) توضیح می‌دهد-->
+
+    <!--عنوان فرعی "پروژه‌های من" قرار دارد -->
+
+    <!--وجود دارد  project و کلاس div در زیر 3 -->
+
+    <!--که هر کدام شامل یک عنوان و یک توضیح برای یک پروژه هستند.-->
+
+</head>
+<body>
+    <h1>به صفحه شخصی من خوش آمدید</h1>
+    <p>من یک توسعه‌دهنده وب هستم و در اینجا می‌توانید درباره من و پروژه‌های من بیشتر بدانید.</p>
+    <h2>پروژه‌های من</h2>
+    <div class="project">
+        <div class="project-title" onclick="toggleDescription(this)">پروژه 1</div>
+        <div class="project-description">توضیحات پروژه 1</div>
+    </div>
+    <div class="project">
+        <div class="project-title" onclick="toggleDescription(this)">پروژه 2</div>
+        <div class="project-description">توضیحات پروژه 2</div>
+    </div>
+    <div class="project">
+        <div class="project-title" onclick="toggleDescription(this)">پروژه 3</div>
+        <div class="project-description">توضیحات پروژه 3</div>
+    </div>
+
+    <!--در اینجا دکمه ها را تایین میکنیم-->
+    <div class="button-container">
+      <button onclick="changeBackgroundColor()">تغییر رنگ پس‌زمینه پروژه ها</button>
+
+      <button onclick="changeFont()">تغییر فونت</button>
+
+      <button onclick="changeBrightness()">تغییر روشنایی/تیرگی پس‌زمینه</button>
+
+      <button onclick="changeFontColor()">تغییر رنگ فونت</button>
+
+      <button onclick="changeFontSize()">تغییر اندازه فونت</button>
+
+      <button onclick="changeTextAlignment()">تغییر ترازبندی متن</button>
+
+      <button onclick="changeTextDecoration()">تغییر زینت‌داری متن</button>
+
+      <button onclick="rotateText()">چرخش متن</button>
+
+      <button onclick="addProject()">اضافه کردن پروژه</button>
+
+      <button onclick="changeBodyBackgroundColor()">تغییر رنگ پس‌زمینه صفحه</button>
+
+      <button onclick="reloadPage()">ریلود صفحه</button>
+      
+      <button onclick="showMessage()">نمایش پیام مخصوص</button>
+
+      <button onclick="goToGoogle()"> Google </button>
+      
+      <button onclick="celebrate()"> جشن بگیر(پشت سر هم بزنید جذاب تر است) </button>
+      
+      <button onclick="makeItRain()"> پولدار شو </button>
+
+      <button onclick="removeProjects()">حذف همه پروژه‌ها</button>
+
+      <button onclick="changeButtonColor()">تغییر رنگ دکمه ها</button>
+      
+      <button onclick="addNumbers2()"> جمع دو عدد</button>
+
+      <button onclick="changeTitleColor()"> تغییر رنگ تیتر</button>
+
+
+    </div>
+    <script>
+    //در اینجا برای نمایش یا عدم نمایش یک المان تابعی تایین کردمم که این تابع پارامتری را میگیرد
+    //یک متغیر است element     
+    //سپس یک تابع شرطی گذاشتم تا بررسی کند ایا المان نمایان است یا پنهان و با توجه به آن تصمیم بگیرد
+        function toggleDescription(element) {
+            var descriptionElement = element.nextElementSibling;
+            if (descriptionElement.style.display === "none") {
+                descriptionElement.style.display = "block";
+            } else {
+                descriptionElement.style.display = "none";
+            }
+        }
+    //در این قسمت تابع تغییر رنگ را داریم.در این کد قسمت پراجکت را تغییر رنگ میدهیم.
+    //درون حلقه یک متغیر به اسم رندم کالر را داریم که مقدار آن برابر با یک رنگ تصادفی است
+        function changeBackgroundColor() {
+            var projects = document.querySelectorAll(".project");
+            for (var i = 0; i < projects.length; i++) {
+                var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                projects[i].style.backgroundColor = randomColor;
+            }
+        }
+    //این تابع برای تغییر فونت تمام متن‌های درون المان بادی به کار میرود
+    //در این کد یک شرط وجود دارد برای برسی این که نوع فونت چیست
+        function changeFont() {
+            var bodyElement = document.querySelector("body");
+            if (bodyElement.style.fontFamily === "Arial, sans-serif") {
+                bodyElement.style.fontFamily = "Tahoma, sans-serif";
+            } else {
+                bodyElement.style.fontFamily = "Arial, sans-serif";
+            }
+        }
+    //در اینجا روشنایی پراجکت ها را بین 100 درصد و 50 درصد تغییر میدهیم
+        function changeBrightness() {
+            var projects = document.querySelectorAll(".project");
+            for (var i = 0; i < projects.length; i++) {
+                if (projects[i].style.filter === "brightness(50%)") {
+                    projects[i].style.filter = "brightness(100%)";
+                } else {
+                    projects[i].style.filter = "brightness(50%)";
+                }
+            }
+        }
+    // در اینجا فونت بادی را را بین مشکی و قرمز تغییر میدهیم
+        function changeFontColor() {
+            var bodyElement = document.querySelector("body");
+            if (bodyElement.style.color === "black") {
+                bodyElement.style.color = "red";
+            } else {
+                bodyElement.style.color = "black";
+            }
+        }
+    //در اینجا سایز فونت بادی را بین 16 و 20 تغییر میدهیم
+        function changeFontSize() {
+            var bodyElement = document.querySelector("body");
+            if (bodyElement.style.fontSize === "16px") {
+                bodyElement.style.fontSize = "20px";
+            } else {
+                bodyElement.style.fontSize = "16px";
+            }
+        }
+    //اینجا متن را ترازبندی میکنیم از چپ به وسط و برعکس
+        function changeTextAlignment() {
+            var bodyElement = document.querySelector("body");
+            if (bodyElement.style.textAlign === "left") {
+                bodyElement.style.textAlign = "center";
+            } else {
+                bodyElement.style.textAlign = "left";
+            }
+        }
+    //در این قسمت زیر متن ها خط میکشد
+        function changeTextDecoration() {
+            var bodyElement = document.querySelector("body");
+            if (bodyElement.style.textDecoration === "underline") {
+                bodyElement.style.textDecoration = "none";
+            } else {
+                bodyElement.style.textDecoration = "underline";
+            }
+        }
+    //در این قسمت متن ها را میچرخاند. از 0 درجه به 180 درجه
+        function rotateText() {
+            var bodyElement = document.querySelector("body");
+            if (bodyElement.style.transform === "rotate(0deg)") {
+                bodyElement.style.transform = "rotate(180deg)";
+            } else {
+                bodyElement.style.transform = "rotate(0deg)";
+            }
+        }
+    //در این قسمت با زدن دکمه به فیلد پروژه، یک پروژه جدید اضافه میشود
+        function addProject() {
+            var projects = document.querySelectorAll(".project");
+            var newProjectNumber = projects.length + 1;
+            var newProject = document.createElement("div");
+            newProject.className = "project";
+            newProject.innerHTML = '<div class="project-title" onclick="toggleDescription(this)">پروژه ' + newProjectNumber + '</div><div class="project-description">توضیحات پروژه ' + newProjectNumber + '</div>';
+            var lastProject = projects[projects.length - 1];
+            lastProject.parentNode.insertBefore(newProject, lastProject.nextSibling);
+        }
+
+    //در این قسمت مثل فانکشن قبلی رنگ رندم عوض میکند ولی با این تفاوت که رنگ پس زمینه به کلی عوض میشود
+        function changeBodyBackgroundColor() {
+            var bodyElement = document.querySelector("body");
+            var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            bodyElement.style.backgroundColor = randomColor;
+        }
+    //در اینجا صفحه ریلود میشود
+        function reloadPage() {
+        location.reload();
+        }
+    //در اینجا پیام داده میشود 
+        function showMessage() {
+        alert('ممنون که 20 میدهید:)');
+        }
+    //به سایت گوگل میرود
+        function goToGoogle() {
+         window.location.href = 'https://www.google.com';
+        }
+    //در اینجا یک ایموجی جشن در صفحه با مختصات رندم نمایش داده میشود و بعد از 3 ثانیه حذف میشود
+        function celebrate() {
+            const confettiElement = document.createElement('div');
+            confettiElement.innerHTML = '🎉';
+            confettiElement.style.position = 'fixed';
+            confettiElement.style.top = Math.random() * window.innerHeight + 'px';
+            confettiElement.style.left = Math.random() * window.innerWidth + 'px';
+            confettiElement.style.fontSize = '50px';
+            confettiElement.style.zIndex = 9999;
+            document.body.appendChild(confettiElement);
+            setTimeout(() => {
+                confettiElement.remove();
+            }, 3000);
+        }
+    //در اینجا 100 المان به صورت تصادفی ایجاد میکند و بعد از 3 ثانیه حذف میشود
+        function makeItRain() {
+            for (let i = 0; i < 100; i++) {
+                const moneyElement = document.createElement('div');
+                moneyElement.innerHTML = '💰';
+                moneyElement.style.position = 'fixed';
+                moneyElement.style.top = Math.random() * window.innerHeight + 'px';
+                moneyElement.style.left = Math.random() * window.innerWidth + 'px';
+                moneyElement.style.fontSize = '50px';
+                moneyElement.style.zIndex = 9999;
+                document.body.appendChild(moneyElement);
+                setTimeout(() => {
+                moneyElement.remove();
+                }, 3000);
+            }
+        }
+    
+    //حذف همه پروژه‌ها
+        function removeProjects() {
+            var projects = document.querySelectorAll('.project');
+            for (var i = 0; i < projects.length; i++) {
+                projects[i].remove();
+            }
+        }
+
+    // تغییر رنگ دکمه ها
+        function changeButtonColor(color) {
+            var buttons = document.querySelectorAll('button');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].style.backgroundColor = color;
+                
+            }
+            changeButtonColor('green');
+    }
+
+
+    //جمع اعداد
+        function addNumbers() {
+            var a = parseInt(prompt('عدد اول:'));
+            var b = parseInt(prompt('عدد دوم:'));
+            return a + b;
+        
+
+
+        }
+            function addNumbers2() { 
+            var result = addNumbers();
+            alert(result);
+
+        }
+   
+    //تغییر رنگ تیتر به رنگ رندم
+        function changeTitleColor() {
+            var title = document.querySelector('h1');
+            var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            title.style.color = randomColor;
+        }
+
+
+
+    </script>
+</body>
+</html>
